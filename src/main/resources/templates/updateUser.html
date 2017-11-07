@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>更新用户信息</title>
+  <link rel="stylesheet" th:href="@{{prefix}/css/bootstrap.min.css(prefix=${prefix})}" />
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="container">
+  <h1>更新用户信息</h1>
+  <hr/>
+
+  <form th:action="@{{prefix}/updateUserPost(prefix=${prefix})}" method="post" commandName="userP" role="form">
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter FirstName:"
+             th:value="${user.firstName}"/>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter LastName:"
+             th:value="${user.lastName}"/>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="text" class="form-control" id="password" name="password" placeholder="Enter Password:"
+             th:value="${user.password}"/>
+    </div>
+    <!-- 把 id 一并写入 userP 中 -->
+    <input type="hidden" id="id" name="id" th:value="${user.id}"/>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-sm btn-success">提交</button>
+    </div>
+  </form>
+</div>
+
+
+<script th:src="@{{prefix}/js/jquery.min.js(prefix=${prefix})}"></script>
+<script th:src="@{{prefix}/js/bootstrap.min.js(prefix=${prefix})}"></script>
+</body>
+</html>

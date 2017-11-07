@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title></title>
+    <link rel="stylesheet" th:href="@{{prefix}/css/bootstrap.min.css(prefix=${prefix})}" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<h1>这里是LeapCloud Ext Demo首页</h1>
+
+<h3>出现此页面，说明配置成功。</h3>
+<!-- 访问变量 -->
+datasource:<br/>
+objectId:<label th:text="${dataSource.appId}"></label><br/>
+user:<label th:text="${dataSource.user}"></label><br/>
+password:<label th:text="${dataSource.password}"></label><br/>
+url:<label th:text="${dataSource.url}"></label><br/>
+restAPIKey:<label th:text="${dataSource.restAPIKey}"></label><br/>
+masterKey:<label th:text="${dataSource.masterKey}"></label><br/>
+
+<a th:href="@{{prefix}/users(prefix=${prefix})}">用户管理</a>
+
+<script th:src="@{{prefix}/js/jquery.min.js(prefix=${prefix})}"></script>
+<script th:src="@{{prefix}/js/bootstrap.min.js(prefix=${prefix})}"></script>
+</body>
+</html>
