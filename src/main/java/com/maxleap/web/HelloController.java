@@ -32,8 +32,16 @@ public class HelloController {
     return "index";
   }
 
+  @RequestMapping(value = "/ext/${prefix}/users/list", method = RequestMethod.GET)
+  public String usersList(ModelMap map) {
+    List<UserJpa> list = userRepository.findAll();
+    map.addAttribute("prefix", appModuleConfig.prefix());
+    map.addAttribute("userList", list);
+    return "userList";
+  }
+
   @RequestMapping(value = "/ext/${prefix}/users", method = RequestMethod.GET)
-  public String list2(ModelMap map) {
+  public String users(ModelMap map) {
     List<UserJpa> list = userRepository.findAll();
     map.addAttribute("prefix", appModuleConfig.prefix());
     map.addAttribute("userList", list);

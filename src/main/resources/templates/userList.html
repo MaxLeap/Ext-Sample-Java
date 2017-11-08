@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>用户列表</title>
+  <link rel="stylesheet" th:href="@{{prefix}/css/bootstrap.min.css(prefix=${prefix})}" />
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="container">
+  <h1>用户列表</h1>
+  <hr/>
+
+  <h3>所有用户</h3>
+
+  <!-- 如果用户列表非空 -->
+    <table class="table table-bordered table-striped" th:if="${userList != null}">
+      <tr>
+        <th>ID</th>
+        <th>姓名</th>
+        <th>密码</th>
+      </tr>
+
+      <tr th:each="user : ${userList}">
+        <td th:text="${user.id}"></td>
+        <td><label th:text="${user.firstName}"></label> <label th:text="${user.lastName}"></label></td>
+        <td th:text="${user.password}"></td>
+      </tr>
+    </table>
+</div>
+
+<script th:src="@{{prefix}/js/jquery.min.js(prefix=${prefix})}"></script>
+<script th:src="@{{prefix}/js/bootstrap.min.js(prefix=${prefix})}"></script>
+</body>
+</html>
