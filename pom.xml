@@ -65,13 +65,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<docker-repository>10.10.10.160:8010</docker-repository>
-			</properties>
-		</profile>
-		<profile>
-			<id>lascn</id>
-			<properties>
-				<docker-repository>dockerhub.leapcloud.cn:5000</docker-repository>
+				<docker-repository>dockerhub.leapcloud.cn:5080</docker-repository>
 			</properties>
 		</profile>
 	</profiles>
