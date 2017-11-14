@@ -36,7 +36,7 @@ public class AppModuleConfig implements EnvironmentAware{
         .driverClassName("com.mysql.jdbc.Driver")
         .username(user)
         .password(password)
-        .url("jdbc:mysql://"+url)
+        .url("jdbc:mysql://"+url+"?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true")
         .build();
   }
 
