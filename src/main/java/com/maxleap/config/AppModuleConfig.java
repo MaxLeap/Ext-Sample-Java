@@ -8,6 +8,10 @@ import org.springframework.core.env.Environment;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  * 应用配置，包括数据源信息，需要从环境变量加载
@@ -28,6 +32,31 @@ public class AppModuleConfig implements EnvironmentAware{
 
   public String prefix(){
     return "/ext/"+prefix;
+  }
+
+  /**
+   * 每次服务启动初始化db数据
+   * 需要防止重复初始化操作
+   * @param connection
+   */
+  public void initDB(Connection connection) {
+    try {
+      DatabaseMetaData metaData = connection.getMetaData();
+      ResultSet res = metaData.getTables(null, null, "test_user", new String[]{"TABLE"});
+      if (!res.next()) {
+        Statement statement = connection.createStatement();
+        statement.executeUpdate("CREATE TABLE IF NOT EXISTS `test_user`(\n" +
+            " `id` int(11) unsigned NOT NULL AUTO_INCREMENT,\n" +
+            " `first_name` varchar(32) NOT NULL,\n" +
+            " `last_name` varchar(32) NOT NULL,\n" +
+            " `password` VARCHAR(255) NOT NULL,\n" +
+            " PRIMARY KEY (`id`)\n" +
+            ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+      }
+      System.out.println("init db success.");
+    } catch (Throwable tx) {
+      tx.printStackTrace();
+    }
   }
 
   @Bean

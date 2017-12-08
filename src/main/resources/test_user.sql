@@ -1,5 +1,4 @@
-DROP Table IF EXISTS `test_user`;
-CREATE TABLE `test_user`(
+CREATE TABLE IF NOT EXISTS `test_user`(
  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
  `first_name` varchar(32) NOT NULL,
  `last_name` varchar(32) NOT NULL,
